@@ -96,16 +96,16 @@ test.describe('JSONPlaceholder /posts API tests', () => {
   });
 
   test('POST then DELETE should allow creation and deletion of a post', async ({ request }) => {
-    const postData = { title: 'foo', body: 'bar', userId: 7 };
+    const postData = { title: 'title', body: 'body', userId: 7 };
     const postResponse = await createPost(request, postData);
     expect(postResponse.ok()).toBeTruthy();
     const created = await postResponse.json();
     expect(created).toMatchObject(postData);
     expect(created).toHaveProperty('id');
 
-    const delResponse = await deletePost(request, created.id);
-    expect(delResponse.ok()).toBeTruthy();
-    const delResult = await delResponse.json();
-    expect(delResult).toEqual({});
+    const deletedResponse = await deletePost(request, created.id);
+    expect(deletedResponse.ok()).toBeTruthy();
+    const deletedResult = await deletedResponse.json();
+    expect(deletedResult).toEqual({});
   });
 });
